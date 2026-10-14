@@ -1,0 +1,13 @@
+{
+  "name": "hausofher-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Haus of Her — one-page brand site (static, no build step; vite only for local preview)",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}
