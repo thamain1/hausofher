@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Haus of Her — Honored. Empowered. Respected.</title>
-<meta name="description" content="Haus of Her is a Dallas sisterhood where women are honored, empowered, and respected. HER Chapter One: A Crowned Celebration — book launch brunch, November 7, 2026.">
+<meta name="description" content="Haus of Her is a sisterhood where women are honored, empowered, and respected. Next gathering: Fuel HER Fire — A Vision Board Party, January 17, 2027, Lincoln, NE.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -73,7 +73,7 @@
     position:fixed;top:20px;right:var(--pad);z-index:90;mix-blend-mode:difference;color:#fff;
     font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:400;
     border:1px solid rgba(255,255,255,.85);border-radius:999px;padding:11px 26px 10px;
-    overflow:hidden;position:fixed;
+    overflow:hidden;
   }
   .top-rsvp span{position:relative;z-index:1;transition:color .45s var(--ease-io)}
   .top-rsvp::before{
@@ -86,7 +86,7 @@
   .rail{
     position:fixed;left:26px;top:50%;transform:translateY(-50%);z-index:90;
     mix-blend-mode:difference;color:#fff;
-    display:flex;flex-direction:column;gap:30px;align-items:center;
+    display:flex;flex-direction:column;gap:26px;align-items:center;
   }
   .rail a{
     writing-mode:vertical-rl;font-size:10px;letter-spacing:.4em;text-transform:uppercase;
@@ -173,7 +173,6 @@
 
   /* ================= about ================= */
   .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:end}
-  .about-grid .lede{align-self:end;padding-bottom:1.2vh}
   .about-mark{
     margin-top:9vh;display:flex;align-items:center;gap:26px;
     font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--muted);
@@ -268,27 +267,60 @@
   .btn-solid:hover span{color:var(--espresso)}
   .btn-ghost::before{background:var(--espresso)}
   .btn-ghost:hover span{color:var(--ivory)}
-  /* on ivory sections */
-  .btn-dark{background:var(--espresso);color:var(--ivory);border-color:var(--espresso)}
-  .btn-dark::before{background:var(--terra)}
-  .btn-dark:hover{border-color:var(--terra)}
-  .btn-dark:hover span{color:var(--ivory)}
   @media (max-width:900px){
     .invite-grid{grid-template-columns:1fr;gap:8vh}
     .dateblock{position:static}
   }
 
-  /* ================= schedule ================= */
-  .slot{
-    display:grid;grid-template-columns:150px 1fr auto;gap:4vw;align-items:baseline;
-    padding:4.2vh 0;border-top:1px solid var(--line);
+  /* ================= chapter one recap ================= */
+  .recap-grid{
+    display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(12px,1.6vw,24px);
+    align-items:start;margin-top:2vh;
   }
-  .slot:last-child{border-bottom:1px solid var(--line)}
-  .slot .t{font-family:var(--caps);font-size:14px;letter-spacing:.18em;color:var(--muted);white-space:nowrap}
-  .slot h4{font-family:var(--serif);font-weight:400;font-size:clamp(21px,2vw,29px);letter-spacing:.01em;margin-bottom:6px}
-  .slot p{font-size:15px;color:var(--muted);max-width:52ch}
-  .slot .ord{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--muted);opacity:.6}
-  @media (max-width:700px){.slot{grid-template-columns:1fr;gap:6px}.slot .ord{display:none}}
+  .frame{
+    overflow:hidden;border-radius:10px;position:relative;
+    /* 2px sliver: a fully-closed clip-path reports zero intersection area
+       and scroll observers would never fire */
+    clip-path:inset(0 0 calc(100% - 2px) 0 round 10px);
+    transition:clip-path .9s var(--ease-io);
+  }
+  .frame.in{clip-path:inset(0 0 0 0 round 10px)}
+  .frame img,.frame video{width:100%;height:100%;object-fit:cover;display:block}
+  .f-a{grid-column:span 5;aspect-ratio:3/2}
+  .f-b{grid-column:span 4;aspect-ratio:3/2}
+  .f-c{grid-column:span 3;aspect-ratio:3/4}
+  .f-d{grid-column:span 4;aspect-ratio:3/4}
+  .f-e{grid-column:span 5;aspect-ratio:3/2}
+  .f-f{grid-column:span 3;aspect-ratio:3/4}
+  .f-g{grid-column:span 4;aspect-ratio:3/2}
+  .f-h{grid-column:span 5;aspect-ratio:3/2}
+  .f-vid{grid-column:span 4;aspect-ratio:9/16;border-radius:14px}
+  .f-vid.in{clip-path:inset(0 0 0 0 round 14px)}
+  .frame figcaption{
+    position:absolute;left:0;right:0;bottom:0;padding:38px 16px 12px;
+    font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:rgba(246,239,229,.9);
+    background:linear-gradient(transparent,rgba(29,17,10,.55));pointer-events:none;
+  }
+  @media (max-width:900px){
+    .recap-grid{grid-template-columns:repeat(6,1fr)}
+    .f-a,.f-b,.f-e,.f-g,.f-h{grid-column:span 6}
+    .f-c,.f-d,.f-f{grid-column:span 3}
+    .f-vid{grid-column:span 6;aspect-ratio:9/14}
+  }
+
+  /* ================= founder ================= */
+  .founder-grid{display:grid;grid-template-columns:5fr 7fr;gap:6vw;align-items:center}
+  .founder-grid .frame{aspect-ratio:4/5}
+  .founder-bio p{color:var(--muted);font-size:clamp(15.5px,1.2vw,18px);max-width:56ch;margin-bottom:1.6em}
+  .founder-bio em{font-weight:500;color:var(--fg)}
+  .founder-sign{
+    font-family:var(--serif);font-style:italic;font-size:clamp(20px,2vw,27px);color:var(--fg);
+  }
+  .founder-sign small{
+    display:block;font-family:var(--sans);font-style:normal;font-size:10.5px;
+    letter-spacing:.4em;text-transform:uppercase;color:var(--muted);margin-top:10px;
+  }
+  @media (max-width:900px){.founder-grid{grid-template-columns:1fr;gap:6vh}}
 
   /* ================= calendar ================= */
   .cal .row{
@@ -302,6 +334,7 @@
     display:block;font-family:var(--sans);font-weight:300;font-size:13.5px;letter-spacing:.05em;
     margin-top:12px;color:var(--muted);
   }
+  .cal .past .what{color:var(--muted)}
   .go{
     font-size:11px;letter-spacing:.3em;text-transform:uppercase;white-space:nowrap;
     display:inline-flex;align-items:center;gap:10px;
@@ -309,6 +342,30 @@
   .go i{font-style:normal;transition:transform .5s var(--ease-io)}
   .go:hover i{transform:translate(3px,-3px)}
   @media (max-width:767px){.cal .row{grid-template-columns:1fr;gap:14px}}
+
+  /* ================= join / mailing list ================= */
+  .join{text-align:center}
+  .join h2{margin-left:auto;margin-right:auto;max-width:20ch}
+  .join .lede{margin:0 auto}
+  .join-form{
+    margin:7vh auto 0;max-width:520px;display:flex;gap:0;align-items:flex-end;
+    border-bottom:1px solid currentColor;padding-bottom:12px;
+  }
+  .join-form input{
+    flex:1;background:none;border:none;outline:none;color:inherit;
+    font-family:var(--serif);font-size:clamp(19px,2vw,26px);font-weight:300;
+    padding:6px 0;letter-spacing:.02em;
+  }
+  .join-form input::placeholder{color:var(--muted)}
+  .join-form button{
+    background:none;border:none;cursor:pointer;color:inherit;
+    font-family:var(--sans);font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+    font-weight:500;padding:10px 0 10px 18px;display:inline-flex;align-items:center;gap:10px;
+  }
+  .join-form button i{font-style:normal;transition:transform .5s var(--ease-io)}
+  .join-form button:hover i{transform:translateX(5px)}
+  .join-note{margin-top:22px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .join-done{display:none;font-family:var(--serif);font-style:italic;font-size:clamp(19px,2vw,26px)}
 
   /* ================= statement ================= */
   .statement{
@@ -342,6 +399,7 @@
   @media (prefers-reduced-motion:reduce){
     .rv>i{transform:none;transition:none}
     .fade{opacity:1;transform:none;transition:none}
+    .frame{clip-path:none;transition:none}
     #curtain{display:none}
     .scrollcue::after{animation:none}
     html{scroll-behavior:auto}
@@ -356,13 +414,14 @@
 <!-- fixed chrome -->
 <div class="chrome">
   <a class="wordmark" href="#top">Haus <i>of</i> Her</a>
-  <a class="top-rsvp" href="https://hausofher.rsvpify.com/" target="_blank" rel="noopener"><span>RSVP — Nov 7</span></a>
+  <a class="top-rsvp" href="https://hausofhervision.rsvpify.com/" target="_blank" rel="noopener"><span>Tickets — Jan 17</span></a>
   <nav class="rail" aria-label="Sections">
     <a href="#about">The Haus</a><span class="dot"></span>
     <a href="#pillars">Pillars</a><span class="dot"></span>
-    <a href="#rsvp">Chapter One</a><span class="dot"></span>
-    <a href="#schedule">The Morning</a><span class="dot"></span>
-    <a href="#events">Calendar</a>
+    <a href="#rsvp">Fuel Her Fire</a><span class="dot"></span>
+    <a href="#chapter-one">Chapter One</a><span class="dot"></span>
+    <a href="#founder">Founder</a><span class="dot"></span>
+    <a href="#join">Join</a>
   </nav>
 </div>
 
@@ -370,7 +429,7 @@
 <header class="hero" id="top" data-bg="#1D110A" data-fg="#F6EFE5">
   <canvas id="halo" aria-hidden="true"></canvas>
   <div class="hero-inner">
-    <p class="kicker fade">A Dallas Sisterhood — Est. for Her</p>
+    <p class="kicker fade">A Sisterhood — Est. for Her</p>
     <h1 aria-label="Haus of Her">
       <span class="rv"><i>HAUS</i></span>
       <span class="rv d1"><i><span class="of">of</span> HER</i></span>
@@ -378,7 +437,7 @@
   </div>
   <div class="hero-foot">
     <p class="tag fade d2">Honored&ensp;·&ensp;Empowered&ensp;·&ensp;Respected</p>
-    <p class="next fade d3"><b>Next Gathering</b>HER Chapter One · A Crowned Celebration<br>Nov 7, 2026 — 360 Brunch House, Dallas</p>
+    <p class="next fade d3"><b>Next Gathering</b>Fuel HER Fire · A Vision Board Party<br>Jan 17, 2027 — Zen Salon &amp; Studio, Lincoln, NE</p>
   </div>
   <div class="scrollcue fade d3">Enter the Haus</div>
 </header>
@@ -388,14 +447,14 @@
   <div class="label fade"><span class="no">01</span> The Haus</div>
   <div class="about-grid">
     <h2>
-      <span class="rv"><i>A house built</i></span>
-      <span class="rv d1"><i><em>for her</em>, by women</i></span>
-      <span class="rv d2"><i>who rise together.</i></span>
+      <span class="rv"><i>A brand built to put</i></span>
+      <span class="rv d1"><i><em>women at the center</em></i></span>
+      <span class="rv d2"><i>of the room.</i></span>
     </h2>
     <p class="lede fade d2">
       Haus of Her is a sisterhood where women are celebrated before they are asked to perform,
-      crowned before they are asked to conform. Through brunches, book launches, and gatherings
-      across Dallas, we create rooms where her story is the main event — honored, empowered,
+      crowned before they are asked to conform. Through brunches, book launches, and gatherings,
+      we create rooms where her story is the main event — honored, empowered,
       and respected, exactly as she is.
     </p>
   </div>
@@ -410,17 +469,17 @@
   <div class="label fade"><span class="no">02</span> Our Pillars</div>
   <div class="pillar fade d1">
     <span class="roman">I</span>
-    <div><h3>Honored</h3><p>Every woman walks in already worthy. We open doors with her name on them and set a place at the table that no one can take.</p></div>
+    <div><h3>Honored</h3><p>Celebrating women whose work deserves recognition.</p></div>
     <span class="arrow">→</span>
   </div>
   <div class="pillar fade d2">
     <span class="roman">II</span>
-    <div><h3>Empowered</h3><p>Stories, stages, and sisterhood that turn quiet confidence into a public crown. We build the rooms; she owns them.</p></div>
+    <div><h3>Empowered</h3><p>Creating rooms that give women tools and visibility.</p></div>
     <span class="arrow">→</span>
   </div>
   <div class="pillar fade d3">
     <span class="roman">III</span>
-    <div><h3>Respected</h3><p>Her voice leads here. We listen first, celebrate loudly, and carry each other's names into every room we enter.</p></div>
+    <div><h3>Respected</h3><p>Spaces where women are the center, not the sidebar.</p></div>
     <span class="arrow">→</span>
   </div>
 </section>
@@ -430,16 +489,16 @@
   <div class="label fade"><span class="no">03</span> The Invitation</div>
   <div class="invite-grid">
     <div class="dateblock fade">
-      <span class="mo">November</span>
-      <span class="dd">07</span>
-      <span class="yr">2026</span>
+      <span class="mo">January</span>
+      <span class="dd">17</span>
+      <span class="yr">2027</span>
     </div>
     <div>
       <h2>
-        <span class="rv"><i>HER Chapter One:</i></span>
-        <span class="rv d1"><i><em>A Crowned Celebration</em></i></span>
+        <span class="rv"><i>Fuel HER Fire:</i></span>
+        <span class="rv d1"><i><em>A Vision Board Party</em></i></span>
       </h2>
-      <p class="lede fade d2">A book launch brunch honoring author Karen “KJ” Johnson and her new book, <em>Poised &amp; Positioned for Purpose</em> — an elevated morning of brunch, conversation, and celebration.</p>
+      <p class="lede fade d2">Sip, snack, and build the vision for your next chapter. Join Haus of Her at Zen Salon &amp; Studio for a curated vision board workshop designed for women who are ready to <em>dream boldly and act intentionally</em>.</p>
 
       <div class="count fade d3" id="countdown" aria-label="Countdown to the celebration">
         <div class="unit"><span class="v" data-u="d">—</span><span class="k">Days</span></div>
@@ -449,56 +508,109 @@
       </div>
 
       <div class="meta fade d3">
-        <div><strong>When</strong><span>Saturday, November 7, 2026 · 11:30 AM – 1:30 PM</span></div>
-        <div><strong>Where</strong><span>360 Brunch House · 5331 E Mockingbird Ln #160, Dallas, TX 75206</span></div>
+        <div><strong>When</strong><span>Sunday, January 17, 2027 · 3:00 PM – 5:00 PM</span></div>
+        <div><strong>Where</strong><span>Zen Salon &amp; Studio · 2709 O St #6, Lincoln, NE 68510</span></div>
+        <div><strong>Ticket</strong><span>Fire Starter — $25 · all supplies included</span></div>
       </div>
       <ul class="includes fade d4">
-        <li>Full brunch &amp; one mimosa</li>
-        <li>A signed copy of <em>Poised &amp; Positioned for Purpose</em> for every guest</li>
-        <li>Swag bag at check-in &amp; a special gift</li>
+        <li>Small bites, refreshments &amp; beverages</li>
+        <li>All vision board supplies — board, magazines, glue, scissors, markers &amp; embellishments</li>
+        <li>An afternoon to slow down, get clear, and leave with a vision you can see every day</li>
       </ul>
       <div class="cta-row fade d5">
-        <a class="btn btn-solid" href="https://hausofher.rsvpify.com/" target="_blank" rel="noopener"><span>Reserve your crown</span></a>
-        <a class="btn btn-ghost" href="https://hausofher.rsvpify.com/" target="_blank" rel="noopener"><span>Event details ↗</span></a>
+        <a class="btn btn-solid" href="https://hausofhervision.rsvpify.com/" target="_blank" rel="noopener"><span>Join the vision party</span></a>
+        <a class="btn btn-ghost" href="https://hausofhervision.rsvpify.com/" target="_blank" rel="noopener"><span>Event details ↗</span></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 04 · the morning -->
-<section id="schedule" data-bg="#F6EFE5">
-  <div class="label fade"><span class="no">04</span> The Morning</div>
+<!-- 04 · chapter one recap -->
+<section id="chapter-one" data-bg="#1D110A" data-fg="#F6EFE5">
+  <div class="label fade"><span class="no">04</span> Chapter One — The Recap</div>
   <h2>
-    <span class="rv"><i>The celebration,</i></span>
-    <span class="rv d1"><i><em>hour by hour.</em></i></span>
+    <span class="rv"><i>A crowned celebration,</i></span>
+    <span class="rv d1"><i><em>in the room.</em></i></span>
   </h2>
-  <div class="agenda">
-    <div class="slot fade d1"><span class="t">11:15 AM</span><div><h4>Arrival &amp; Check-In</h4><p>Be welcomed, pick up your swag bag, and find your seat.</p></div><span class="ord">i.</span></div>
-    <div class="slot fade d2"><span class="t">11:45 AM</span><div><h4>Welcome &amp; Opening Remarks</h4><p>Haus of Her welcomes you to HER Chapter One: A Crowned Celebration.</p></div><span class="ord">ii.</span></div>
-    <div class="slot fade d2"><span class="t">12:00 PM</span><div><h4>Brunch Is Served</h4><p>Enjoy brunch and conversation with fellow guests.</p></div><span class="ord">iii.</span></div>
-    <div class="slot fade d3"><span class="t">12:30 PM</span><div><h4>A Word from KJ</h4><p>Author Karen “KJ” Johnson shares her story and the heart behind <em>Poised &amp; Positioned for Purpose</em>.</p></div><span class="ord">iv.</span></div>
-    <div class="slot fade d3"><span class="t">1:00 PM</span><div><h4>Book Signing &amp; Photos</h4><p>Get your signed copy and take photos with KJ.</p></div><span class="ord">v.</span></div>
-    <div class="slot fade d4"><span class="t">1:30 PM</span><div><h4>Closing</h4><p>Thank you for celebrating with us.</p></div><span class="ord">vi.</span></div>
+  <p class="lede fade d2" style="margin-bottom:7vh">
+    On November 7, 2026, HER Chapter One honored author Karen “KJ” Johnson and her book
+    <em>Poised &amp; Positioned for Purpose</em> — a morning of brunch, story, and crowns
+    at 360 Brunch House, Dallas. This is what it felt like.
+  </p>
+  <div class="recap-grid">
+    <figure class="frame f-a"><img src="assets/event/table-sisterhood.jpg" alt="Guests gathered around the brunch table at Chapter One"><figcaption>The table</figcaption></figure>
+    <figure class="frame f-b d1"><img src="assets/event/kj-book.jpg" alt="Author Karen KJ Johnson with her book Poised and Positioned for Purpose"><figcaption>The author</figcaption></figure>
+    <figure class="frame f-c d2"><img src="assets/event/crowning-hug.jpg" alt="A guest being crowned at the celebration"><figcaption>The crowning</figcaption></figure>
+    <figure class="frame f-vid d2">
+      <video src="assets/event/brunch-video.mp4" poster="assets/event/brunch-video-poster.jpg" autoplay muted loop playsinline aria-label="Video from the Chapter One celebration"></video>
+      <figcaption>In motion</figcaption>
+    </figure>
+    <figure class="frame f-d d3"><img src="assets/event/crowning-pink.jpg" alt="A joyful crowning moment against the green wall"><figcaption>Her crown</figcaption></figure>
+    <figure class="frame f-e d1"><img src="assets/event/book-crown.jpg" alt="The book and a crown resting on the table"><figcaption>The details</figcaption></figure>
+    <figure class="frame f-f d3"><img src="assets/event/crowned-pair.jpg" alt="Two guests wearing crowns at Chapter One"><figcaption>Crowned</figcaption></figure>
+    <figure class="frame f-g d4"><img src="assets/event/place-cards.jpg" alt="Hand-lettered place cards at each seat"><figcaption>Her name on it</figcaption></figure>
+    <figure class="frame f-h d2"><img src="assets/event/table-setting.jpg" alt="The brunch table set with flowers and gifts"><figcaption>The setting</figcaption></figure>
   </div>
 </section>
 
-<!-- 05 · calendar -->
+<!-- 05 · founder -->
+<section id="founder" data-bg="#F6EFE5">
+  <div class="label fade"><span class="no">05</span> Meet the Founder</div>
+  <div class="founder-grid">
+    <figure class="frame fade d1"><img src="assets/event/founder-crowning.jpg" alt="Latasha Varnadoe-Iloabuchi crowning a guest at Chapter One"></figure>
+    <div class="founder-bio">
+      <h2 style="font-size:clamp(34px,4.2vw,60px)">
+        <span class="rv"><i>Every woman deserves a seat</i></span>
+        <span class="rv d1"><i><em>she never has to fight for.</em></i></span>
+      </h2>
+      <div class="founder-bio">
+        <p class="fade d2">As the founder of Haus of Her, <em>Latasha Varnadoe-Iloabuchi</em> creates rooms where women are honored, empowered, and respected exactly as they are. Her work has always been about opening doors.</p>
+        <p class="fade d3">She is Co-Founder and President of <em>The 1895 Project</em>, a nonprofit that expands access to education and celebrates African American traditions, and the founder of <em>The Varnadoe Group</em>, a consulting firm that helps businesses grow with strategy and heart. With more than 20 years in accounting and business operations, she knows how to build things that last. As a speaker and co-writer of the stage play <em>Queen Broken</em>, she knows the power of a story told well.</p>
+        <p class="fade d4">Haus of Her is where all of it comes together: sisterhood, storytelling, and a crown for every guest.</p>
+      </div>
+      <p class="founder-sign fade d5">Latasha Varnadoe-Iloabuchi<small>Founder, Haus of Her</small></p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · calendar -->
 <section class="cal" id="events" data-bg="#F6EFE5" style="padding-top:0">
-  <div class="label fade"><span class="no">05</span> The Calendar</div>
+  <div class="label fade"><span class="no">06</span> The Calendar</div>
   <h2>
     <span class="rv"><i>Every chapter begins</i></span>
     <span class="rv d1"><i><em>with a seat at the table.</em></i></span>
   </h2>
   <div class="row fade d2">
-    <span class="when">Nov 07, 2026<br>11:30 AM – 1:30 PM</span>
-    <span class="what">HER Chapter One: <em>A Crowned Celebration</em><small>Book launch brunch with Karen “KJ” Johnson · 360 Brunch House, Dallas</small></span>
-    <a class="go" href="https://hausofher.rsvpify.com/" target="_blank" rel="noopener">RSVP <i>↗</i></a>
+    <span class="when">Jan 17, 2027<br>3:00 PM – 5:00 PM</span>
+    <span class="what">Fuel HER Fire: <em>A Vision Board Party</em><small>Curated vision board workshop · Zen Salon &amp; Studio, Lincoln, NE · Fire Starter ticket $25</small></span>
+    <a class="go" href="https://hausofhervision.rsvpify.com/" target="_blank" rel="noopener">Tickets <i>↗</i></a>
   </div>
-  <div class="row fade d3">
+  <div class="row past fade d3">
+    <span class="when">Nov 07, 2026<br>Celebrated</span>
+    <span class="what">HER Chapter One: <em>A Crowned Celebration</em><small>Book launch brunch honoring Karen “KJ” Johnson · 360 Brunch House, Dallas</small></span>
+    <a class="go" href="#chapter-one">Recap <i>↓</i></a>
+  </div>
+  <div class="row fade d4">
     <span class="when">Chapters<br>ahead</span>
-    <span class="what">What’s next at the <em>Haus</em><small>New gatherings are announced through our events page — check back as each chapter opens.</small></span>
-    <a class="go" href="https://hausofher.rsvpify.com/" target="_blank" rel="noopener">All events <i>↗</i></a>
+    <span class="what">What’s next at the <em>Haus</em><small>Each gathering gets its own ticket door — join the list below and be first to know.</small></span>
+    <a class="go" href="#join">Join the list <i>↓</i></a>
   </div>
+</section>
+
+<!-- 07 · join the haus -->
+<section class="join" id="join" data-bg="#1D110A" data-fg="#F6EFE5" style="text-align:center">
+  <div class="label fade" style="justify-content:center"><span class="no">07</span> Join the Haus</div>
+  <h2>
+    <span class="rv"><i>Be first through</i></span>
+    <span class="rv d1"><i><em>every door.</em></i></span>
+  </h2>
+  <p class="lede fade d2">Leave your email and step onto the Haus list — first word on new chapters, tickets, and gatherings.</p>
+  <form class="join-form fade d3" id="join-form">
+    <input type="email" id="join-email" placeholder="her email address" required aria-label="Email address">
+    <button type="submit">Join <i>→</i></button>
+  </form>
+  <p class="join-done" id="join-done">Welcome to the Haus — check your drafts to send.</p>
+  <p class="join-note fade d4">No noise. Only chapters.</p>
 </section>
 
 <!-- statement -->
@@ -514,10 +626,10 @@
 <footer data-bg="#1D110A" data-fg="#F6EFE5">
   <a class="foot-mark" href="#top">Haus <i>of</i> Her</a>
   <div class="foot-cols">
-    <div>Honored · Empowered · Respected<br>Dallas, Texas</div>
+    <div>Honored · Empowered · Respected<br>Founded by Latasha Varnadoe-Iloabuchi</div>
     <div>
       Questions — <a href="mailto:latasha@hausofher.org">latasha@hausofher.org</a><br>
-      Events &amp; RSVP — <a href="https://hausofher.rsvpify.com/" target="_blank" rel="noopener">hausofher.rsvpify.com</a>
+      Next chapter — <a href="https://hausofhervision.rsvpify.com/" target="_blank" rel="noopener">Fuel HER Fire · Jan 17, 2027</a>
     </div>
     <div>© 2026 Haus of Her</div>
   </div>
@@ -559,10 +671,16 @@ const rio = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); rio.unobserve(e.target); } });
 }, { threshold: .12 });
 document.querySelectorAll('section .rv, section .fade, .statement .rv, .statement .fade').forEach(el => rio.observe(el));
+/* frames start nearly fully clip-pathed, so their visible ratio never reaches
+   .12 — give them a zero-threshold observer of their own */
+const fio = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); fio.unobserve(e.target); } });
+}, { threshold: 0 });
+document.querySelectorAll('section .frame').forEach(el => fio.observe(el));
 
-/* ============ countdown ============ */
+/* ============ countdown — Fuel HER Fire, Jan 17 2027 3PM CT ============ */
 (function(){
-  const target = new Date('2026-11-07T11:30:00-06:00').getTime();
+  const target = new Date('2027-01-17T15:00:00-06:00').getTime();
   const el = {
     d: document.querySelector('[data-u="d"]'), h: document.querySelector('[data-u="h"]'),
     m: document.querySelector('[data-u="m"]'), s: document.querySelector('[data-u="s"]')
@@ -579,6 +697,19 @@ document.querySelectorAll('section .rv, section .fade, .statement .rv, .statemen
   }
   tick(); setInterval(tick, 1000);
 })();
+
+/* ============ join the list (mailto hand-off) ============ */
+document.getElementById('join-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const v = document.getElementById('join-email').value.trim();
+  if (!v) return;
+  const subject = 'Join the Haus list';
+  const body = 'Please add me to the Haus of Her list: ' + v;
+  window.location.href = 'mailto:latasha@hausofher.org?subject='
+    + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  document.getElementById('join-form').style.display = 'none';
+  document.getElementById('join-done').style.display = 'block';
+});
 
 /* ============ generative halo canvas (raw WebGL) ============ */
 (function(){
