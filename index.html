@@ -615,7 +615,7 @@
     <input type="email" id="join-email" placeholder="her email address" required aria-label="Email address">
     <button type="submit">Join <i>→</i></button>
   </form>
-  <p class="join-done" id="join-done">Welcome to the Haus — check your drafts to send.</p>
+  <p class="join-done" id="join-done">Welcome to the Haus — you're on the list.</p>
   <p class="join-note fade d4">No noise. Only chapters.</p>
 </section>
 
@@ -704,17 +704,34 @@ document.querySelectorAll('section .frame').forEach(el => fio.observe(el));
   tick(); setInterval(tick, 1000);
 })();
 
-/* ============ join the list (mailto hand-off) ============ */
-document.getElementById('join-form').addEventListener('submit', e => {
+/* ============ join the list (direct-to-inbox via FormSubmit) ============ */
+/* Posts silently in the background; submissions land at latasha@hausofher.org.
+   First-ever submission triggers a one-time activation email to that address. */
+document.getElementById('join-form').addEventListener('submit', async e => {
   e.preventDefault();
-  const v = document.getElementById('join-email').value.trim();
+  const input = document.getElementById('join-email');
+  const btn = e.target.querySelector('button');
+  const v = input.value.trim();
   if (!v) return;
-  const subject = 'Join the Haus list';
-  const body = 'Please add me to the Haus of Her list: ' + v;
-  window.location.href = 'mailto:latasha@hausofher.org?subject='
-    + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-  document.getElementById('join-form').style.display = 'none';
-  document.getElementById('join-done').style.display = 'block';
+  btn.disabled = true;
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/latasha@hausofher.org', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: v,
+        _subject: 'New Haus of Her list signup',
+        _template: 'table',
+        _captcha: 'false'
+      })
+    });
+    if (!res.ok) throw new Error('submit failed');
+    document.getElementById('join-form').style.display = 'none';
+    document.getElementById('join-done').style.display = 'block';
+  } catch (err) {
+    btn.disabled = false;
+    btn.innerHTML = 'Try again <i>→</i>';
+  }
 });
 
 /* ============ generative halo canvas (raw WebGL) ============ */
