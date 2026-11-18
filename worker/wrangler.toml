@@ -1,0 +1,9 @@
+name = "hausofher-join"
+main = "index.js"
+compatibility_date = "2026-11-18"
+
+workers_dev = true
+
+[vars]
+FROM_EMAIL = "hello@hausofher.org"
+NOTIFY_EMAIL = "latasha@hausofher.org"

@@ -630,6 +630,7 @@
   <p class="lede fade d2">Leave your email and step onto the Haus list — first word on new chapters, tickets, and gatherings.</p>
   <form class="join-form fade d3" id="join-form">
     <input type="email" id="join-email" placeholder="her email address" required aria-label="Email address">
+    <input type="text" id="join-company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
     <button type="submit">Join <i>→</i></button>
   </form>
   <p class="join-done" id="join-done">Welcome to the Haus — you're on the list.</p>
@@ -721,9 +722,9 @@ document.querySelectorAll('section .frame').forEach(el => fio.observe(el));
   tick(); setInterval(tick, 1000);
 })();
 
-/* ============ join the list (direct-to-inbox via FormSubmit) ============ */
-/* Posts silently in the background; submissions land at latasha@hausofher.org.
-   First-ever submission triggers a one-time activation email to that address. */
+/* ============ join the list (hausofher-join worker → SendGrid) ============ */
+/* Posts to our Cloudflare Worker, which emails latasha@hausofher.org
+   and sends the subscriber a branded welcome email. */
 document.getElementById('join-form').addEventListener('submit', async e => {
   e.preventDefault();
   const input = document.getElementById('join-email');
@@ -732,14 +733,12 @@ document.getElementById('join-form').addEventListener('submit', async e => {
   if (!v) return;
   btn.disabled = true;
   try {
-    const res = await fetch('https://formsubmit.co/ajax/latasha@hausofher.org', {
+    const res = await fetch('https://hausofher-join.jmorgan-77c.workers.dev', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: v,
-        _subject: 'New Haus of Her list signup',
-        _template: 'table',
-        _captcha: 'false'
+        company: document.getElementById('join-company').value
       })
     });
     if (!res.ok) throw new Error('submit failed');
